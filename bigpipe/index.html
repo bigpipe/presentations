@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>BigPipe - modular framework</title>
+
+		<meta name="description" content="A modular asynchronous web framework for Node.JS">
+		<meta name="author" content="">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/bigpipe/bigpipe.css">
+		<link rel="stylesheet" href="css/bigpipe/font-awesome.min.css">
+		<link rel="stylesheet" href="lib/css/tomorrow.css">
+
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body class="container">
+
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 class="bigpipe">big pipe</h1>
+					<h4 class="space">Revolutionary asynchronous modular web framework for Node.JS</h4>
+					<p>
+						<small>
+							<code> npm install --save bigpipe </code>
+						</small>
+					</p>
+					<p>
+						<small>
+							<a href="http://bigpipe.io" target="_blank">http://bigpipe.io</a>
+						</small>
+					</p>
+				</section>
+
+   			<section>
+					<section data-background="/image/1.jpg">
+						<aside class="notes">
+							No, not these big pipes. BigPipe is not the holy smokes among smokes,
+              although we are in the right city for it.
+						</aside>
+					</section>
+					<section>
+						<h2>Facebook</h2>
+
+            <p>Introduced on June 4, 2010</p>
+            <p><a href="http://goo.gl/53azKc" target="blank">http://goo.gl/53azKc</a></p>
+
+						<img src="/image/2.png">
+
+						<aside class="notes">
+              Fast user experience, free hardware resource<br><br>
+              Redesign of serving dynamic pages<br><br>
+							Closed source, shown only parts of the underlying source.<br><br>
+              For example, they recently released Hack, PHP extension.
+						</aside>
+					</section>
+				</section>
+
+        <section>
+          <div class="row">
+            <div class="col-lg-3">
+              <i class="circle fa fa-twitter fa-2x"></i>
+              <p>Swaagie</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-github fa-2x"></i>
+              <p>Swaagie</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-linkedin fa-2x"></i>
+              <p>Swaagman</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-google fa-2x"></i>
+              <p>+MartijnSwaagman</p>
+            </div>
+          </div>
+        </section>
+
+				<section>
+					<div class="col-lg-6">
+						<img class="circle" src="/image/martijn.png">
+						<p>
+							Swaagie<br>
+							<small>Martijn Swaagman</small>
+						</p>
+
+						<img class="circle" src="/image/arnout.jpg">
+						<p>
+							3rd-Eden<br>
+							<small>Arnout Kazemier</small>
+						</p>
+					</div>
+					<div class="col-lg-6">
+            <img src="/image/observe.it.png">
+            <p class="space"></p>
+						<img src="/image/nodejitsu.png">
+					</div>
+
+          <aside class="notes">
+            Arnout started project<br><br>
+            Plenty of time to work on open source projects.<br><br>
+            Use cases for Nodejitsu
+          </aside>
+				</section>
+
+        <section>
+          <section>
+          <h2 class="space">Goals</h2>
+            <p>
+              Fast user experience, <i>performance</i>
+            </p>
+            <p>
+              Component <i>reusability</i>
+            </p>
+            <p>
+              Reduce and share server/client <i>workload</i>
+            </p>
+
+            <aside class="notes">
+              Focus on implementation of the framework.<br><br>
+              It will be a mix of use cases and actual technical implementation.
+            </aside>
+          </section>
+
+          <section data-background="/image/6.jpg">
+            <aside class="notes">
+              Little explaination, research on user experienced pageload speed<br><br>
+              Faster is better, the sooner a user can interact the better.
+            </aside>
+          </section>
+
+          <section data-background="/image/10.png">
+            <aside class="notes">
+              Restyle header, sidebar should be easy.<br><br>
+              Swapping out CSS, the view template or client JS should easy<br><br>
+              Work with npm. Bower, Grunt, Components, can used, no conventions.
+            </aside>
+          </section>
+
+          <section data-background="/image/8.jpg">
+            <aside class="notes">
+              Server release resources (memory) as fast as possible<br><br>
+              The client can do CSS/JS drawing/initialization as soon as possible,
+              Dont wait for the entire page to finish loading
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Doing it sync</h2>
+            <img src="/image/16.png">
+
+            <aside class="notes">
+              Doing all in serie<br><br>
+              Heavy 3rd-party api will increase generation further
+            </aside>
+          </section>
+          <section>
+            <h2>Doing it async</h2>
+            <img src="/image/17.png">
+
+            <aside class="notes">
+              Wouldnt it be awesome, if doing all parallel<br><br>
+              Total amount of generation/latency not changed, just distributed
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="/image/3.jpg">
+          <h3>
+            Meteor, EmberJS, AngularJS, KnockoutJS
+          </h3>
+
+          <aside class="notes">
+            Similarities, e.g. modular and focus fast user experience<br><br>
+            BigPipe's different, e.g. shared client/server workload and no AJAX.<br><br>
+            Personal frustration: force conventions, e.g. rendering templates
+            client-side.
+          </aside>
+        </section>
+
+        <section class="model">
+          <section>
+            <h2>Rich user interfaces</h2>
+            <div class="col-lg-12">
+              <span class="header">header</span>
+            </div>
+            <div class="col-lg-8">
+              <span class="users">feed of products</span>
+            </div>
+            <div class="col-lg-4">
+              <aside class="row">
+                <span class="search">recommended</span>
+              </aside>
+              <div class="row">
+                <span class="widget">invoices</span>
+              </div>
+            </div>
+
+            <aside class="notes">
+              Typical user interfaces have several components.<br><br>
+              Re-used components (header) across the application<br><br>
+              3rd-party API integrations, consider: invoices, solr search
+            </aside>
+          </section>
+
+          <section class="model">
+            <h2>Pagelet</h2>
+            <div class="col-lg-12">
+              <span class="header"></span>
+            </div>
+            <div class="col-lg-8 red">
+              <span class="users"></span>
+            </div>
+            <div class="col-lg-4">
+              <aside class="row">
+                <span class="search"></span>
+              </aside>
+              <div class="row">
+                <span class="widget"></span>
+              </div>
+            </div>
+
+            <aside class="notes">
+              How would this look in BigPipe?<br><br>
+              Smallest component, Pagelet is sandboxed, reusuable component<br><br>
+              Container for template, CSS/JS<br><br>
+              Full of features, more later
+            </aside>
+          </section>
+
+          <section class="model red">
+            <h2>Page</h2>
+            <div class="col-lg-12">
+              <span class="header"></span>
+            </div>
+            <div class="col-lg-8">
+              <span class="users"></span>
+            </div>
+            <div class="col-lg-4">
+              <aside class="row">
+                <span class="search"></span>
+              </aside>
+              <div class="row">
+                <span class="widget"></span>
+              </div>
+            </div>
+
+            <aside class="notes">
+              Page is container for all pagelets<br><br>
+              Routing, rendering, gather assets<br><br>
+              BigPipe = collection of pages with specific routes
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="/image/9.jpg">
+          <aside class="notes">
+            All nice, but does it work and is it used?<br><br>
+            Browsenpm.org, launched at EmpireJS last month<br><br>
+            Build from cratch using BigPipe.
+          </aside>
+        </section>
+
+        <section data-state="demo">
+          <section>
+            <h3 class="space">Open Source example of a BigPipe powered site</h3>
+            <h1>browsenpm.org</h1>
+
+            <p>
+              https://github.com/nodejitsu/browsenpm.org
+            </p>
+
+            <aside class="notes">
+              Provide mirror status, additional package statistics, readme<br><br>
+              Still beta, fully open source, so you can contribute.
+            </aside>
+          </section>
+
+          <section>
+            <h2>Public npm</h2>
+            <img src="/image/13.png">
+
+            <aside class="notes">
+              Footer, navigation pagelets<br><br>
+              Initial slow fetch, search will load, usable
+              How does module/package page look?
+            </aside>
+          </section>
+
+          <section>
+            <h2>Meteor package page (&plusmn;30%)</h2>
+            <img src="/image/14.png">
+
+            <aside class="notes">
+              Static HTML replaced with pagelet template content<br><br>
+              Navigation and footer are usable and user can navigate
+            </aside>
+          </section>
+
+          <section>
+            <h2>Meteor package page (100%)</h2>
+            <img src="/image/15.png">
+
+            <aside class="notes">
+              Perceived Load time long if synchronous<br><br>
+              Lesson learned: divide pagelets in more smaller pagelets
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Pagelets are modules</h2>
+            <pre><code class="javascript">'use strict';
+
+var Pagelet = require('bigpipe').Pagelet;
+
+//
+// Alternatively, only depend on Pagelet
+//
+Pagelet = require('pagelet');</code></pre>
+
+            <aside class="notes">
+              Pagelet is a module, stand-alone or via bigpipe<br><br>
+              Usuable outside BigPipe, viewModel
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pagelets are extendable</h2>
+            <pre><code class="javascript">var Pagelet = require('bigpipe').Pagelet;
+
+Pagelet.extend({
+  //
+  // Custom properties here
+  //
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              custom properties will override parent<br><br>
+              new constructible instance<br><br>
+              .on does relative path resolving, other neat useful stuff
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pagelets have view templates</h2>
+            <pre><code class="bash">$ npm install --save handlebars
+$ ..
+$ echo '<aside><h1>{{ title }}</h1></aside>' > sidebar.hbs
+$ vim index.js
+</code></pre><pre><code class="javascript">'use strict';
+
+var Pagelet = require('bigpipe').Pagelet;
+
+Pagelet.extend({
+  view: 'sidebar.hbs',
+  error: 'unavailable.jade', // optional
+
+  get: function get(done) {
+    return done(null, { title: 'my sidebar' });
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              On GET request data rendered server side<br><br>
+              Multiple engines, handblebars, mustache, hogan, w.e.<br><br>
+              Template is re-usable client side, optional error uses jade engine
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pagelets have style</h2>
+            <pre><code class="javascript">Pagelet.extend({
+  css: 'list.styl'
+}).on(module);</code></pre>
+            <pre><code class="css">ul
+  &.foo
+    list-style: none
+    padding: 0</code></pre>
+            <pre><code class="css">[data-pagelet="sidebar"] ul.foo {
+  list-style: none;
+  padding: 0;
+}</code></pre>
+            <p>
+              Discussion shadowRoot/scoped style:
+              <a href="http://goo.gl/45PYnV" target="_blank">http://goo.gl/45PYnV</a>
+            </p>
+
+            <aside class="notes">
+              CSS, stylus, SASS, LESS, anything<br><br>
+              Namespaced to the root pagelet element, ShadowRoot<br><br>
+              Active discussion on how to solve namespacing
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pagelets contain logic</h2>
+            <pre><code class="javascript">'use strict';
+
+var Pagelet = require('bigpipe').Pagelet;
+
+Pagelet.extend({
+  account: require('./accountModel'),
+
+  get: function get(done) {
+    this.account(function fetched(error, data) {
+      return done(error, data);
+    });
+  },
+
+  post: function get(body, files, next) {
+    this.account(body, function processed(error) {
+      return next(error);
+    });
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              contains all logic, HTTP requests, example POST<br><br>
+              post data is deterministic, only target pagelet method called<br><br>
+              Neat usecase, Private npm, add/remove packages to whitelist/blacklist, asynchronous POST
+            </aside>
+          </section>
+
+          <section>
+            <h2>Pagelets can do RPC</h2>
+            <p>Full real-time remote procedure calls</p>
+            <pre><code class="javascript">'use strict';
+
+var Pagelet = require('bigpipe').Pagelet
+  , accounts = require('./accounts');
+
+Pagelet.extend({
+  name: 'accounts'
+
+  RPC: ['search'],
+
+  search: function search(reply, arg) {
+    accounts.search(function (error, data) {
+      reply(error, data);
+    });
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              Search exposed to client, server-side function callable<br><br>
+              Websocket primus abstraction provides substreams to each pagelet<br><br>
+            </aside>
+          </section>
+
+          <section>
+            <h2>Distribute pagelets</h2>
+            <pre><code class="bash">$ npm install carousel-pagelet</code></pre>
+            <pre><code class="js">'use strict';
+
+var path = require('path')
+  , Pagelet = require('carousel-pagelet');
+
+//
+// Manually export extended instance.
+//
+module.exports = Pagelet.extend({
+  css: path.join(__dirname, 'custom.styl'),
+  js: path.join(__dirname, 'alternative-behavior.js')
+});</code></pre>
+
+            <aside class="notes">
+              Don't build your own carousel, instead extend and adapt<br><br>
+              Some features for pagelets, much more: global dependencies, recursive pagelets
+              streaming
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="/image/11.jpg">
+          <aside class="notes">
+            Would we use pagelets now, this would happen<br><br>
+            Needs glue, Pages provide this glue<br><br>
+            No dismemberment, again a panorama picture
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>Page contains pagelets</h2>
+            <pre><code class="javascript">'use strict';
+
+var Page = require('bigpipe').Page;
+
+Page.extend({
+  pagelets: {
+    'pagelet-1': 'path to pagelet',
+    'pagelet-2': require('custom-pagelet')
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              End point for a resolved request<br><br>
+              Similar pattern and structure compared to pagelets<br><br>
+              Note usage, do not worry about paths, objects or arrays
+            </aside>
+          </section>
+
+          <section>
+            <h2>Page does routing</h2>
+            <pre><code class="javascript">'use strict';
+
+var Page = require('bigpipe').Page;
+
+Page.extend({
+  path: '/url/:param/:name'
+}).on(module);</code></pre>
+            <p>(x)RegExp based routing</p>
+            <pre><code class="javascript">Page.extend({
+  path: /^\/foo\/bar/i
+}).on(module);</code></pre>
+            <pre><code class="javascript">Page.extend({
+  path: '/^\\/(?&lt;named&gt;[\\d\\.]+)\\/foo/'
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              Smart URL routing, like expected, easy access to params<br><br>
+              Regular and extended expression based routing
+            </aside>
+          </section>
+
+          <section>
+            <h2>Page also has view</h2>
+            <pre><code>&lt;!doctype html&gt;
+&lt;html class=&quot;no-js&quot;&gt;
+&lt;head&gt;
+  &lt;%- bootstrap %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div data-pagelet=&quot;sidebar&quot;&gt;&lt;/div&gt;
+
+  &lt;section class=&quot;documentation&quot;&gt;
+    &lt;article data-pagelet=&quot;bigpipe&quot;&gt;&lt;/article&gt;
+    &lt;article data-pagelet=&quot;pagelet&quot;&gt;&lt;/article&gt;
+    &lt;article data-pagelet=&quot;client&quot;&gt;&lt;/article&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <aside class="notes">
+              Template include bootstrap, has snippet to load Pipe.JS, meta tags<br><br>
+              Flushed asap, to allow pipe.js to render to designated conntainers
+            </aside>
+          </section>
+
+          <section>
+            <h2>Page renders async</h2>
+            <pre><code class="javascript">'use strict';
+
+var Page = require('bigpipe').Page;
+
+Page.extend({
+  path: '/',
+  view: 'index.ejs',
+  mode: 'async',
+
+  pagelets: {
+    'pagelet-1': 'path to pagelet',
+    'pagelet-2': require('custom-pagelet')
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              Mode = asynchronous rendered server side<br><br>
+              No order, FIFO flushing<br><br>
+              Requires JS client side to function
+            </aside>
+          </section>
+          <section>
+            <h2>Page renders pipelined</h2>
+            <pre><code class="javascript">'use strict';
+
+var Page = require('bigpipe').Page;
+
+Page.extend({
+  path: '/',
+  view: 'index.ejs',
+  mode: 'pipeline',
+
+  pagelets: {
+    'pagelet-1': 'path to pagelet',
+    'pagelet-2': require('custom-pagelet')
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              Asynchronous, but pagelet order maintained<br><br>
+              Show specific functionality first<br><br>
+              Requires JS client side to function
+            </aside>
+          </section>
+          <section>
+            <h2>Page renders sync</h2>
+            <pre><code class="javascript">'use strict';
+
+var Page = require('bigpipe').Page;
+
+Page.extend({
+  path: '/',
+  view: 'index.ejs',
+  mode: 'sync',
+
+  pagelets: {
+    'pagelet-1': 'path to pagelet',
+    'pagelet-2'': require('custom-pagelet')
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              Synchronous, single flush, nothing fancy<br><br>
+              No client-side library JS required, fallback<br><br>
+              That is it for pages, much more: statusCode, methods, contentType, etc.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Base implementation</h2>
+            <pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;script src=&quot;{pipe.js}&quot;&gt;&lt;/script&gt;
+  &lt;noscript&gt;
+    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;/?no_pagelet_js=1&quot;&gt;
+  &lt;/noscript&gt;
+    ...
+&lt;/head&gt;
+&lt;body&gt;
+  ...
+  &lt;header data-pagelet=&quot;header&quot;&gt;&lt;/header&gt;
+  &lt;section data-pagelet=&quot;feed&quot;&gt;&lt;/section&gt;
+  &lt;footer data-pagelet=&quot;recommended&quot;&gt;&lt;/section&gt;
+  ...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <img src="/image/4.png">
+
+            <aside class="notes">
+              Write template as soon as possible, pipe.js<br><br>
+              Pagelets render in specified elements.
+            </aside>
+          </section>
+          <section>
+            <h2>Flush pagelet</h2>
+            <pre><code>&lt;code data-pagelet-fragment=&quot;login&quot; style=&ldquo;display:none&quot;&gt;&lt;!--
+  &lt;section class=&quot;row&quot;&gt;
+    &lt;form method=&quot;post&quot; action=&quot;/&quot; class=&quot;fivecol&quot;&gt;
+      ..
+    &lt;/form&gt;
+  &lt;/section&gt; --&gt;
+&lt;/code&gt;
+&lt;script&gt;
+  pipe.arrive(&quot;login&quot;, {
+    &ldquo;css&quot;:[&quot;/b04d448dd7b67c3bdb2a75ff79198c840df88954.css&quot;],
+    &ldquo;js&quot;:[],
+    &ldquo;id&quot;:&quot;0FWH-EFC8MTOQ-OLXRO9HG5H2-992RO1OR&quot;,
+    &ldquo;rpc&quot;:[],
+    &ldquo;authorized&quot;:true,
+    &ldquo;streaming&quot;:false,
+    &ldquo;data&quot;:{}
+  });
+&lt;/script&gt;</code></pre>
+            <img src="/image/5.png">
+
+            <aside class="notes">
+              Server renders pagelet asynchronously and flushes, chunked encoding<br><br>
+              Call client library and loads CSS/JS<br><br>
+              Set features and provide data to client
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="/image/12.jpg">
+          <h2>Catapoodle !!!</h2>
+
+          <aside class="notes">
+            Page and pagelets are like catapoodle, pagelets are glued together<br><br>
+            Not alive yet though, might need some electricity
+          </aside>
+        </section>
+
+        <section>
+          <h2>Serving pages and pagelets</h2>
+          <h4>Creating your first BigPipe instance</h4>
+          <pre class="space"><code class="javascript">var BigPipe = require('bigpipe');
+
+var bigpipe = BigPipe.createServer(8080, {
+  pages: __dirname + '/pages',
+  dist: __dirname + '/dist'
+});</code></pre>
+          <h3>Demo time</h3>
+
+          <aside class="notes">
+            Useful helper function to setup plain http server<br><br>
+            Provide port, pages and dist storage<br><br>
+            Lets see it working first!
+          </aside>
+        </section>
+
+        <section data-state="demo">
+          <section>
+            <h2>Demonstrating async</h2>
+            <p><a href="#" id="play"><i class="fa fa-play"></i> in an iframe</a></p>
+
+            <iframe width="1000" height="700" id="demo"></iframe>
+
+            <aside class="notes">
+              iFrame, SVG elements rendered, each element = pagelets, not advised<br><br>
+              Forced delay of 1 second++ on S, background, J<br><br>
+              Extending base.js Pagelet
+            </aside>
+          </section>
+          <section>
+            <h2>SVG element as pagelet</h2>
+            <pre><code class="javascript">'use strict';
+
+require('bigpipe').Pagelet.extend({
+  view: 'view.ejs',
+
+  mode: 'svg',        // Set pagelet mode to SVG for correct NameSpaceURI.
+
+  attributes: {},     // Element SVG attributes.
+
+  delay: 1000,        // Default fake delay of 1 second.
+
+  get: function(render) {
+    var pagelet = this;
+
+    setTimeout(function ready() {
+      render(null, { attributes: pagelet.attributes });
+    }, pagelet.delay);
+  }
+}).on(module);</code></pre>
+
+            <aside class="notes">
+              mode != page render mode, pagelet mode = HTML namespaceURI<br><br>
+              Note: get called after extending, pagelet.attributes can be path
+            </aside>
+          </section>
+          <section>
+            <h2><font color="yellow">Yellow</font> background</h2>
+            <pre><code class="javascript">'use strict';
+
+require('../base').extend({
+  name: 'background',
+  delay: 2000,
+  attributes: {
+    fill: "#f7df1e",
+    height: 630,
+    width: 630,
+    x: 0,
+    y: 0
+  }
+}).on(module);</code></pre>
+            <p>
+              <a href="https://github.com/bigpipe/EmpireJS" target="_blank">
+                https://github.com/bigpipe/EmpireJS
+              </a>
+            </p>
+            <aside class="notes">
+              different name, delay and attributes<br><br>
+              note: .on(module) call, resolves paths relative to file
+            </aside>
+          </section>
+        </section>
+
+        <script>
+          document.getElementById('play').onclick = function click(event) {
+            event.preventDefault();
+            document.getElementById('demo').src = 'http://localhost:8081/';
+          };
+        </script>
+
+        <section>
+          <section>
+            <h2>BigPipe server options</h2>
+            <pre><code class="javascript">var BigPipe = require('bigpipe');
+
+var bigpipe = BigPipe.createServer(443, {
+  pages: __dirname + 'pages',
+  dist: __dirname + '/dist',
+
+  key: fs.readFileSync('ssl.key'),
+  cert: fs.readFileSync('cert.key'),
+  spdy: { /* SPDY configuration */ },
+
+  redirect: 80
+});</code></pre>
+            <aside class="notes">
+              Secure server is as easy, simply set correct port and files<br><br>
+              Handle SPDY configuration<br><br>
+              Forceful redirection of port 80 to secure port
+            </aside>
+          </section>
+
+          <section>
+            <h2>BigPipe plugins</h2>
+            <pre><code class="javascript">'use strict';
+
+bigpipe.use('ack', {
+  // Only ran on the server.
+  server: function (bigpipe, options) {},
+
+  // Runs on the client, it's automatically bundled.
+  client: function (bigpipe, options) {},
+
+  // Optional library that needs to be bundled on the client.
+  library: '',
+
+  // Plugin options, Bigpipe.options will be merged in.
+  options: {}
+});</code></pre>
+            <aside class="notes">
+              Server or client side or both<br><br>
+              Simple pattern, provide options
+            </aside>
+          </section>
+
+          <section>
+            <h2>BigPipe middleware</h2>
+            <pre><code class="javascript">'use strict';
+
+var BigPipe = require('bigpipe')
+  , serve = require('static-serve')
+  , connect = require('connect');
+
+var bigpipe = BigPipe.createServer(8080, {
+  pages: __dirname + '/pages',
+  dist: __dirname + '/dist'
+});
+
+bigpipe.before('static', serve());
+bigpipe.before(connect.favicon(__dirname + '/favicon.png'));</code></pre>
+            <aside class="notes">
+              Compatible with common used middleware<br><br>
+              For example connect, or any other compatible middleware layer
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="/image/7.jpg">
+          <aside class="notes">
+            Full stack server side, client side required<br><br>
+            Interpret as you like, overhaul vs towing.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>Client side library</h2>
+            <pre><code class="javascript">'use strict';
+
+pipe.once('&lt;name&gt;::render', function initialized(pagelet) {
+  //
+  // You can access the initialised pagelet here
+  //
+});</code></pre>
+            <aside class="notes">
+              Orchestrates client-side pagelet rendering<br><br>
+              Loads CSS/JS assets asynchronous.<br><br>
+              Name = pagelet name, called after render
+            </aside>
+          </section>
+
+          <section>
+            <h2>Library features</h2>
+            <pre><code class="javascript">'use strict';
+
+pipe.once('&lt;name&gt;::render', function initialized(pagelet) {
+  // Render pagelet
+  pagelet.render('&lt;strong&gt;hi&lt;/strong&gt;');
+
+  // Submit form over real-time connection
+  pagelet.submit(document.forms[0]);
+
+  // Call RPC methods
+  pagelet.search('foo', done);
+});</code></pre>
+            <aside class="notes">
+              Access to pagelet, RPC and data<br><br>
+              Defer init of client-side script (jQuery), elements present DOM
+            </aside>
+          </section>
+
+          <section>
+            <h2>Primus</h2>
+            <pre class="space"><code class="javascript">'use strict';
+
+..
+charts.append = function append(data) {
+  ..
+}
+
+pipe.once('charts::render', function initialized(pagelet) {
+  pagelet.stream.on('data', charts.append);
+});</code></pre>
+            <p>
+              Seamless switching between websocket libraries
+            </p>
+            <p>
+              Plugin support and custom encoders
+            </p>
+            <p class="space">
+              Additional fixes and automatic reconnect that works
+            </p>
+            <p>
+              <a href="http://primus.io/" target="_blank">
+                primus.io
+              </a>
+            </p>
+            <aside class="notes">
+              Cool feature, websocket abstraction layer written by Arnout<br><br>
+              Connection automatically made<br><br>
+              Choose your favorite websocket library.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h2 class="space">What else is there?</h2>
+          <p>
+            <strong>Compiler</strong>: manages and optimizes CSS/JS dependencies
+          </p>
+          <p>
+            <strong>Fortress</strong>: docker-like containers for client-side code
+          </p>
+          <p>
+            <strong>Low level components</strong>: fusing, temper, fabricator, etc.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="space">The solved problems</h2>
+          <p>
+            Fast user experience, <i>performance</i>
+          </p>
+          <p>
+            Component <i>reusability</i>
+          </p>
+          <p>
+            Reduce and share server/client <i>workload</i>
+          </p>
+
+          <aside class="notes">
+            Asynchronous render mode, Primus websockets, compile dependencies<br><br>
+            Sandboxing, namespacing and temper, BigPipe itself is modular<br><br>
+            RPC, pre-load all required pages/pagelets, flush early
+          </aside>
+        </section>
+
+				<section data-background="/image/end.jpg">
+          <h1>Try it</h1>
+          <aside class="notes">
+            If you find the project interesting, please give it a try.<br><br>
+            Use at own risk, no warranties. BBQ, chicken, composed of chicklets
+          </aside>
+        </section>
+
+        <section>
+          <h2 class="space">Future goals</h2>
+          <p>Quickling or turbo links</p>
+          <p>Pagelet & page cache</p>
+          <p>Streaming/diff-able CSS/JS</p>
+          <p>Benchmarking</p>
+
+          <aside class="notes">
+            Contribution is welcomed!<br><br>
+            Here are things that still need to be done.<br><br>
+            Quicklining cache pages client side, stream new/changed parts of JS/CSS.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Thank you!</h2>
+          <small class="space"></small>
+          <p class="left">
+            Documentation:
+            <a href="http://bigpipe.io" target="_blank">http://bigpipe.io</a>
+          </p>
+          <p class="left">
+            BigPipe:
+            <a href="http://github.com/bigpipe/bigpipe" target="_blank">http://github.com/bigpipe/bigpipe</a>
+          </p>
+          <p class="left">
+            Pagelet:
+            <a href="http://github.com/bigpipe/pagelet" target="_blank">http://github.com/bigpipe/pagelet</a>
+          </p>
+          <p class="left">
+            Pipe.js:
+            <a href="http://github.com/bigpipe/pipe.js" target="_blank">http://github.com/bigpipe/pipe.js</a>
+          </p>
+          <p class="left space">
+            Primus:
+            <a href="http://github.com/primus/primus" target="_blank">http://github.com/primus/primus</a>
+          </p>
+
+          <div class="row">
+            <div class="col-lg-3">
+              <i class="circle fa fa-twitter fa-2x"></i>
+              <p>Swaagie</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-github fa-2x"></i>
+              <p>Swaagie</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-linkedin fa-2x"></i>
+              <p>Swaagman</p>
+            </div>
+            <div class="col-lg-3">
+              <i class="circle fa fa-google fa-2x"></i>
+              <p>+MartijnSwaagman</p>
+            </div>
+          </div>
+
+          <aside class="notes">
+            Use it, try examples, the JS logo repository<br><br>
+            Little things help, create pagelet, patch documentation, etc.
+          </aside>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				backgroundTransition: 'slide',
+				theme: Reveal.getQueryHash().theme,
+				transition: Reveal.getQueryHash().transition || 'linear',
+
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+		</script>
+
+	</body>
+</html>
