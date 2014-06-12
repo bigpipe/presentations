@@ -1,0 +1,21 @@
+{
+  "name": "empirejs",
+  "version": "1.0.0",
+  "description": "Example of paglets and bigpipe",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Empirejs",
+    "logo",
+    "example",
+    "bigpipe",
+    "pagelet"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "dependencies": {
+    "bigpipe": "~0.5.0"
+  }
+}
